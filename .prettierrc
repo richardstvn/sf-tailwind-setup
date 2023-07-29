@@ -1,6 +1,14 @@
 {
+  "tabWidth": 2,
+  "singleQuote": true,
   "trailingComma": "none",
   "overrides": [
+    {
+      "files": ["**/*.css", "**/*.html"],
+      "options": {
+        "singleQuote": false
+      }
+    },
     {
       "files": "**/lwc/**/*.html",
       "options": { "parser": "lwc" }
