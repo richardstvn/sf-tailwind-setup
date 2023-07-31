@@ -4,9 +4,9 @@
   "version": "1.0.0",
   "description": "Salesforce App",
   "config": {
-    "cssDir": "./force-app/main/default/staticresources/sfTailwind",
-    "cssDistFile": "$npm_package_config_cssDir/dist/sfTailwindDist.css",
-    "cssAuditFile": "./postcss/z-audit/sfTailwindAudit.css"
+    "twCssDir": "./force-app/main/default/staticresources/sfTailwind",
+    "twCssDistFile": "$npm_package_config_cssDir/dist/sfTailwindDist.css",
+    "twCssAuditFile": "./postcss/z-audit/sfTailwindAudit.css"
   },
   "scripts": {
     "build:dev": "concurrently \"cross-env NODE_ENV=development npm run build\" \" npm run build:audit\"",
@@ -15,10 +15,12 @@
     "build:dev:watch": "concurrently \"cross-env NODE_ENV=development npm run build\" \" npm run build:audit:watch\"",
     "build:play:watch": "cross-env NODE_ENV=playground npm run build:watch",
     "build:prod:watch": "concurrently \"cross-env NODE_ENV=production npm run build\" \" npm run build:audit:watch\"",
-    "build": "cross-env-shell \"postcss $npm_package_config_cssDir/src/**/*.css --output $npm_package_config_cssDistFile --verbose\"",
-    "build:watch": "cross-env-shell \"postcss $npm_package_config_cssDir/src/**/*.css --output $npm_package_config_cssDistFile --watch --verbose\"",
-    "build:audit": "cross-env-shell \"postcss $npm_package_config_cssDir/src/**/*.css --output $npm_package_config_cssAuditFile --verbose\"",
-    "build:audit:watch": "cross-env-shell \"postcss $npm_package_config_cssDir/src/**/*.css --output $npm_package_config_cssAuditFile --watch --verbose\"",
+    "build": "cross-env-shell \"postcss $npm_package_config_twCssDir/src/**/*.css --output $npm_package_config_twCssDistFile --verbose\"",
+    "build:watch": "cross-env-shell \"postcss $npm_package_config_twCssDir/src/**/*.css --output $npm_package_config_twCssDistFile --watch --verbose\"",
+    "build:audit": "cross-env-shell \"postcss $npm_package_config_twCssDir/src/**/*.css --output $npm_package_config_twCssAuditFile --verbose\"",
+    "build:audit:watch": "cross-env-shell \"postcss $npm_package_config_twCssDir/src/**/*.css --output $npm_package_config_twCssAuditFile --watch --verbose\"",
+    "deploy:twcss": "cross-env-shell \"sfdx force:source:deploy -p $npm_package_config_twCssDir\"",
+    "deploy:twcss:watch": "cross-env-shell \"onchange $npm_package_config_twCssDir/dist/**/*.css -- npm run deploy:twcss\"",
     "lint": "eslint **/{aura,lwc}/**",
     "test": "npm run test:unit",
     "test:unit": "sfdx-lwc-jest",
