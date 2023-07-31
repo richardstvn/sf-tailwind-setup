@@ -1,0 +1,7 @@
+@import "tailwindcss/base";
+@import "../../../../../../postcss/base/_index.css";
+
+@import "tailwindcss/components";
+@import "../../../../../../postcss/components/_index.css";
+
+@import "tailwindcss/utilities";
